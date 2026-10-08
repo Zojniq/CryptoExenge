@@ -1,0 +1,76 @@
+/* ================= ЗМІННІ ТА БАЗОВЕ ОФОРМЛЕННЯ ================= */
+:root {
+    --bg-dark: #121212;
+    --bg-card: #1E1E1E;
+    --accent-green: #D3FF52;
+    --text-main: #FFFFFF;
+    --text-muted: #A0A0A0;
+    --border-color: #2A2A2A;
+    --font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-family);
+    line-height: 1.5;
+}
+
+
+/* ================= HEADER ТА НАВІГАЦІЯ ================= */
+.site-header {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.logo-icon {
+    color: var(--accent-green);
+}
+
+.nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 14px;
+}
+
+.nav-link:hover {
+    color: var(--text-main);
+}
+
+
+/* ================= FOOTER ================= */
+.site-footer {
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-col h4 {
+    color: var(--text-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-col a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 14px;
+    transition: opacity 0.3s;
+}
+
+.footer-col a:hover {
+    opacity: 0.7;
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
