@@ -1,0 +1,254 @@
+.exchange {
+    --bg: #0e0f10;
+    --card: #151617;
+    --line: #27292b;
+    --text: #f3f4f1;
+    --muted: #8b8f8c;
+    --accent: #d3f56a;
+    --accent-soft: #232d17;
+    --radius: 12px; /* Зменшено радіус під меншу висоту */
+    color-scheme: dark;
+  }
+  
+  .exchange,
+  .exchange * { box-sizing: border-box; }
+  
+  .exchange {
+    width: 100%;
+    max-width: 520px;
+    display: grid;
+    gap: 8px; /* Було 12px */
+    padding: 16px 18px; /* Було 24px 20px */
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px; /* Було 24px */
+  }
+  
+  .exchange .card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .exchange h1 { 
+    margin: 0; 
+    font-size: 20px; /* Було 24px */
+    font-weight: 600; 
+    letter-spacing: -0.01em; 
+  }
+  
+  .exchange .badge {
+    flex: none;
+    padding: 2px 8px; /* Було 3px 10px */
+    font-size: 11px; /* Було 12px */
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid #34431f;
+    border-radius: 6px;
+  }
+  
+  .exchange .lead { 
+    margin: 0; 
+    color: var(--muted); 
+    font-size: 13px; /* Було 14px */
+    line-height: 1.35;
+  }
+  
+  .exchange .block {
+    margin: 0;
+    padding: 10px 14px; /* Було 16px */
+    background: #111213;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  
+  .exchange fieldset.block { min-width: 0; }
+  
+  .exchange legend,
+  .exchange .label { 
+    padding: 0; 
+    font-size: 12px; /* Було 14px */
+    color: var(--muted); 
+  }
+  
+  .exchange .label { display: block; margin-bottom: 4px; /* Було 8px */ }
+  
+  .exchange legend { margin-bottom: 8px; /* Було 12px */ }
+  
+  .exchange .hint { 
+    margin: 4px 0 0; /* Було 8px 0 0 */
+    font-size: 11px; /* Було 12px */
+    color: #6f7371; 
+  }
+  
+  .exchange .row { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    gap: 10px; 
+  }
+  
+  .exchange .big {
+    min-width: 0;
+    width: 100%;
+    padding: 0;
+    font: inherit;
+    font-size: 20px; /* Було 28px */
+    font-weight: 500;
+    color: var(--text);
+    background: none;
+    border: 0;
+    outline: 0;
+    border-radius: 9px ;
+  }
+  
+  .exchange .row .big { flex: 1; }
+  
+  .exchange .date { 
+    font-size: 16px; /* Було 22px */
+    color-scheme: dark; 
+  }
+  
+  .exchange .pill {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 8px 2px 3px; /* Було 4px 10px 4px 4px */
+    background: #1b1d1e;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+  }
+  
+  .exchange .pill-time { padding-left: 10px; }
+  
+  .exchange .coin {
+    display: grid;
+    place-items: center;
+    width: 24px; /* Було 32px */
+    height: 24px;
+    font-size: 13px; /* Було 16px */
+    font-weight: 600;
+    color: var(--accent);
+    background: #0e0f10;
+    border-radius: 50%;
+  }
+  
+  .exchange select {
+    appearance: none;
+    padding-right: 18px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' fill='none' stroke='%238b8f8c' stroke-width='1.6'%3E%3Cpath d='m1 1.5 4 4 4-4'/%3E%3C/svg%3E") no-repeat right center;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+  }
+  
+  .exchange select option { background: var(--card); }
+  
+  .exchange .select-full { padding-right: 20px; background-position: right 4px center; }
+  
+  .exchange .methods { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 8px; /* Було 12px */
+  }
+  
+  .exchange .method { position: relative; display: block; cursor: pointer; }
+  
+  .exchange .method input { position: absolute; opacity: 0; inset: 0; }
+  
+  .exchange .method-body {
+    display: grid;
+    gap: 2px;
+    height: 100%;
+    padding: 8px 12px; /* Було 14px */
+    background: #151617;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    transition: border-color .15s, background-color .15s;
+  }
+  
+  .exchange .method-body strong { 
+    font-size: 13px; /* Було 15px */
+    font-weight: 600; 
+  }
+  
+  .exchange .method-body small { 
+    font-size: 11px; /* Було 12px */
+    line-height: 1.25; 
+    color: var(--muted); 
+  }
+  
+  .exchange .method input:checked + .method-body { 
+    background: var(--accent-soft); 
+    border-color: var(--accent); 
+  }
+  
+  .exchange .summary { 
+    display: grid; 
+    gap: 3px; /* Було 4px */
+    margin: 2px 0 0; 
+    padding: 0 4px; 
+  }
+  
+  .exchange .summary div { display: flex; justify-content: space-between; gap: 12px; }
+  
+  .exchange .summary dt,
+  .exchange .summary dd { margin: 0; font-size: 12px; /* Було 13px */ }
+  
+  .exchange .summary dt { color: #c9ccc8; }
+  
+  .exchange .summary dd { color: #6f7371; }
+  
+  .exchange .submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px; /* Було 18px */
+    font: inherit;
+    font-size: 14px; /* Було 16px */
+    font-weight: 600;
+    color: #12150a;
+    background: var(--accent);
+    border: 0;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: transform .15s, filter .15s;
+  }
+  
+  .exchange .submit:hover { filter: brightness(1.05); }
+  
+  .exchange .submit:active { transform: scale(.99); }
+  
+  .exchange .legal { 
+    margin: 2px 0 0; 
+    font-size: 11px; /* Було 12px */
+    text-align: center; 
+    color: #6f7371; 
+    line-height: 1.3;
+  }
+  
+  .exchange :focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+  
+  .exchange .block:focus-within { border-color: #3a3d3f; }
+  
+  .exchange .method input:focus-visible + .method-body { outline: 2px solid var(--accent); outline-offset: 2px; }
+  
+  @media (max-width: 420px) {
+    .exchange { padding: 14px 10px; }
+    .exchange .methods { grid-template-columns: 1fr; }
+    .exchange .big { font-size: 18px; }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .exchange,
+    .exchange * { transition: none !important; }
+  }
+  
+  .exchange { margin-inline: auto; }

@@ -1,0 +1,99 @@
+<form class="exchange" id="exchange-form" action="/orders" method="POST"
+          data-rates="<%= JSON.stringify(rates) %>">
+
+      <header class="card-head">
+        <h1>Замов готівку в обміннику</h1>
+        <span class="badge">Приклад</span>
+      </header>
+      <p class="lead">Вкажи суму й валюту, обери крипту, відділення та зручний час. Ми підтвердимо наявність готівки.</p>
+
+      <!-- Спосіб обміну -->
+      <fieldset class="block">
+        <legend>Спосіб обміну</legend>
+        <div class="methods">
+          <% methods.forEach((m, i) => { %>
+            <label class="method">
+              <input type="radio" name="method" value="<%= m.id %>" <%= i === 0 ? 'checked' : '' %>>
+              <span class="method-body">
+                <strong><%= m.title %></strong>
+                <small><%= m.text %></small>
+              </span>
+            </label>
+          <% }) %>
+        </div>
+      </fieldset>
+
+      <!-- Сума готівки -->
+      <div class="block">
+        <label class="label" for="amount">Сума готівки</label>
+        <div class="row">
+          <input class="big" type="text" inputmode="numeric" id="amount" name="amount"
+                 value="100 000" autocomplete="off" required>
+          <label class="pill">
+            <span class="coin" id="fiat-coin">₴</span>
+            <select name="currency" id="currency" aria-label="Валюта">
+              <% Object.keys(rates).forEach(code => { %>
+                <option value="<%= code %>"><%= code %></option>
+              <% }) %>
+            </select>
+          </label>
+        </div>
+        <p class="hint" id="amount-hint">Вкажи потрібну суму готівки · UAH або EUR</p>
+      </div>
+
+      <!-- Крипта -->
+      <div class="block">
+        <label class="label" for="crypto">Крипта для оплати</label>
+        <div class="row">
+          <span class="big" id="crypto-name">USDT</span>
+          <label class="pill">
+            <span class="coin">₮</span>
+            <select name="crypto" id="crypto" aria-label="Криптовалюта">
+              <% cryptos.forEach(c => { %>
+                <option value="<%= c.code %>" data-network="<%= c.network %>"><%= c.code %></option>
+              <% }) %>
+            </select>
+          </label>
+        </div>
+        <p class="hint" id="crypto-hint">Мережа <%= cryptos[0].network %></p>
+      </div>
+
+      <!-- Обмінник -->
+      <div class="block">
+        <label class="label" for="branch">Обмінник</label>
+        <select class="big select-full" name="branch" id="branch" required>
+          <% branches.forEach(b => { %>
+            <option value="<%= b.id %>"><%= b.name %></option>
+          <% }) %>
+        </select>
+        <p class="hint">Приклад відділення · адреса та доступність уточнюються під час замовлення</p>
+      </div>
+
+      <!-- Дата й час -->
+      <div class="block">
+        <label class="label" for="date">Дата та час візиту</label>
+        <div class="row">
+          <input class="big date" type="date" id="date" name="date" required>
+          <label class="pill pill-time">
+            <select name="time" id="time" aria-label="Час візиту">
+              <% slots.forEach(s => { %>
+                <option value="<%= s %>"><%= s %></option>
+              <% }) %>
+            </select>
+          </label>
+        </div>
+        <p class="hint">Сьогодні або будь-яка зручна дата · доступність уточнюється під час замовлення</p>
+      </div>
+
+      <!-- Розрахунок -->
+      <dl class="summary">
+        <div><dt id="rate-line">1 USDT ≈ <%= rates.UAH %> UAH</dt></div>
+        <div><dt id="result-line">~2 424 USDT</dt><dd>Орієнтовно</dd></div>
+      </dl>
+
+      <button class="submit" type="submit">
+        Зарезервувати готівку <span aria-hidden="true">↗</span>
+      </button>
+
+      <p class="legal">Це демонстраційний розрахунок, не оферта. Остаточний курс, комісії, наявність готівки та час зустрічі уточнюються під час створення замовлення.</p>
+    </form>

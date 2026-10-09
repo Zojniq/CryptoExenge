@@ -4,26 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ВЕКТОР — криптообмінник</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/content.css">
+    <link rel="stylesheet" href="/css/exchange.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+
     <%- include('partials/header') %>
 
-    <main class="main-content">
-        
-        
-
+    <main>
+        <div class="main-content">
+            <section class="mainContent-text">
+                <p>ГОТІВКА В ОБМІННИКУ</p>
+                <h2>Твоя готівка.</h2>
+                <h2 class="green-text">У потрібний час.</h2>
+                <p>Вкажи суму, обери крипту, відділення та зручний час. Ми підтвердимо наявність готівки й зустрінемо тебе особисто</p>
+                <ul class="features-list">
+                    <li>
+                        <span class="check-icon green-text"><i class="bi bi-check-lg"></i></span> Готівка в обміннику
+                    </li>
+                    <li>
+                        <span class="check-icon green-text"><i class="bi bi-check-lg"></i></span> P2P як альтернатива
+                    </li>
+                </ul>
+            </section>
+            <section class="table">
+                <%- include('partials/exchange-form') %>
+            </section>
+        </div>
     </main>
-
 
     <%- include('partials/footer') %>
 
-
+    <script src="/js/exchange.js"></script>
     <script src="/js/main.js"></script>
 </body>
 </html>
