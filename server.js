@@ -26,10 +26,9 @@ const data = {
 };
 
 app.get('/', async (req, res) => {
-    let uahRate = 41.25; // Резервний курс на випадок збою мережі
 
     try {
-        // Отримуємо актуальний курс USDT до UAH напряму з Binance
+        // Отримуємо актуальний курс
         const response = await axios.get('https://api.binance.com/api/v3/ticker/price?symbol=USDTUAH');
         uahRate = parseFloat(parseFloat(response.data.price).toFixed(2));
     } catch (error) {

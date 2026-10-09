@@ -1,4 +1,4 @@
-/* ================= ЗМІННІ ТА БАЗОВЕ ОФОРМЛЕННЯ ================= */
+
 :root {
     --bg-dark: #121212;
     --bg-card: #1E1E1E;
@@ -17,7 +17,7 @@ body {
 }
 
 
-/* ================= HEADER ТА НАВІГАЦІЯ ================= */
+
 .site-header {
     border-bottom: 1px solid var(--border-color);
 }
@@ -45,7 +45,7 @@ body {
 }
 
 
-/* ================= FOOTER ================= */
+
 .site-footer {
     border-top: 1px solid var(--border-color);
 }
@@ -74,45 +74,37 @@ body {
     font-size: 12px;
 }
 
-/* ==========================================================================
-   1. Головна сітка сторінки: Текст зліва, форма справа
-   ========================================================================== */
+
 
    .main-content {
     display: grid;
-    /* Ліва колонка займає весь доступний простір (1fr),
-       права (.table) займає ширину форми (до 520px) */
     grid-template-columns: 1fr minmax(340px, 520px);
     gap: 56px;
-    align-items: start; /* Вирівнює текст і форму по верхньому краю */
+    align-items: start; 
     max-width: 1240px;
     margin: 0 auto;
     padding: 40px 24px;
     box-sizing: border-box;
 }
 
-/* ==========================================================================
-   2. Секція з формою (права частина)
-   ========================================================================== */
+
 
 .table {
     display: flex;
-    justify-content: flex-end; /* Притискає форму до правого краю */
+    justify-content: flex-end; 
     width: 100%;
 }
 
-/* ==========================================================================
-   3. Текстова колонка (ліва частина)
-   ========================================================================== */
+
 
 .mainContent-text {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 12px; /* Легке вирівнювання базової лінії з верхівкою форми */
+    padding-top: 12px; 
 }
 
-/* Маленький верхній підзаголовок (ГОТІВКА В ОБМІННИКУ) */
+
 .mainContent-text > p:first-of-type {
     font-size: 13px;
     font-weight: 600;
@@ -122,7 +114,7 @@ body {
     margin: 0 0 12px 0;
 }
 
-/* Заголовки */
+
 .mainContent-text h2 {
     font-size: clamp(34px, 4.5vw, 56px);
     font-weight: 700;
@@ -132,12 +124,12 @@ body {
     letter-spacing: -0.02em;
 }
 
-/* Зелений акцентний текст */
+
 .green-text {
     color: #d3f56a;
 }
 
-/* Основний опис */
+
 .mainContent-text > p:nth-of-type(2) {
     font-size: clamp(15px, 1.15vw, 17px);
     line-height: 1.6;
@@ -146,7 +138,7 @@ body {
     margin: 20px 0 28px 0;
 }
 
-/* Список переваг з галочками */
+
 .features-list {
     list-style: none;
     padding: 0;
@@ -173,13 +165,11 @@ body {
     line-height: 1;
 }
 
-/* ==========================================================================
-   4. Адаптивність (Планшети та смартфони)
-   ========================================================================== */
+
 
 @media (max-width: 960px) {
     .main-content {
-        grid-template-columns: 1fr; /* Перехід в 1 колонку */
+        grid-template-columns: 1fr; 
         gap: 36px;
         padding: 28px 16px;
     }
@@ -195,10 +185,10 @@ body {
     }
 
     .mainContent-text .features-list {
-        align-items: flex-start; /* Самі пункти списку тримаємо рівними */
+        align-items: flex-start; 
     }
 
     .table {
-        justify-content: center; /* Центруємо форму на мобільних пристроях */
+        justify-content: center; 
     }
 }

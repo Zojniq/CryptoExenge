@@ -6,7 +6,7 @@
     --muted: #8b8f8c;
     --accent: #d3f56a;
     --accent-soft: #232d17;
-    --radius: 12px; /* Зменшено радіус під меншу висоту */
+    --radius: 12px; 
     color-scheme: dark;
   }
   
@@ -17,11 +17,11 @@
     width: 100%;
     max-width: 520px;
     display: grid;
-    gap: 8px; /* Було 12px */
-    padding: 16px 18px; /* Було 24px 20px */
+    gap: 8px; 
+    padding: 16px 18px; 
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 20px; /* Було 24px */
+    border-radius: 20px; 
   }
   
   .exchange .card-head {
@@ -33,15 +33,15 @@
   
   .exchange h1 { 
     margin: 0; 
-    font-size: 20px; /* Було 24px */
+    font-size: 20px; 
     font-weight: 600; 
     letter-spacing: -0.01em; 
   }
   
   .exchange .badge {
     flex: none;
-    padding: 2px 8px; /* Було 3px 10px */
-    font-size: 11px; /* Було 12px */
+    padding: 2px 8px; 
+    font-size: 11px; 
     color: var(--accent);
     background: var(--accent-soft);
     border: 1px solid #34431f;
@@ -51,13 +51,13 @@
   .exchange .lead { 
     margin: 0; 
     color: var(--muted); 
-    font-size: 13px; /* Було 14px */
+    font-size: 13px; 
     line-height: 1.35;
   }
   
   .exchange .block {
     margin: 0;
-    padding: 10px 14px; /* Було 16px */
+    padding: 10px 14px; 
     background: #111213;
     border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -68,17 +68,17 @@
   .exchange legend,
   .exchange .label { 
     padding: 0; 
-    font-size: 12px; /* Було 14px */
+    font-size: 12px; 
     color: var(--muted); 
   }
   
-  .exchange .label { display: block; margin-bottom: 4px; /* Було 8px */ }
+  .exchange .label { display: block; margin-bottom: 4px;  }
   
-  .exchange legend { margin-bottom: 8px; /* Було 12px */ }
+  .exchange legend { margin-bottom: 8px;  }
   
   .exchange .hint { 
-    margin: 4px 0 0; /* Було 8px 0 0 */
-    font-size: 11px; /* Було 12px */
+    margin: 4px 0 0; 
+    font-size: 11px; 
     color: #6f7371; 
   }
   
@@ -94,7 +94,7 @@
     width: 100%;
     padding: 0;
     font: inherit;
-    font-size: 20px; /* Було 28px */
+    font-size: 20px; 
     font-weight: 500;
     color: var(--text);
     background: none;
@@ -106,7 +106,7 @@
   .exchange .row .big { flex: 1; }
   
   .exchange .date { 
-    font-size: 16px; /* Було 22px */
+    font-size: 16px; 
     color-scheme: dark; 
   }
   
@@ -115,7 +115,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 2px 8px 2px 3px; /* Було 4px 10px 4px 4px */
+    padding: 2px 8px 2px 3px; 
     background: #1b1d1e;
     border: 1px solid var(--line);
     border-radius: 999px;
@@ -126,9 +126,9 @@
   .exchange .coin {
     display: grid;
     place-items: center;
-    width: 24px; /* Було 32px */
+    width: 24px; 
     height: 24px;
-    font-size: 13px; /* Було 16px */
+    font-size: 13px; 
     font-weight: 600;
     color: var(--accent);
     background: #0e0f10;
@@ -155,7 +155,7 @@
   .exchange .methods { 
     display: grid; 
     grid-template-columns: 1fr 1fr; 
-    gap: 8px; /* Було 12px */
+    gap: 8px; 
   }
   
   .exchange .method { position: relative; display: block; cursor: pointer; }
@@ -166,7 +166,7 @@
     display: grid;
     gap: 2px;
     height: 100%;
-    padding: 8px 12px; /* Було 14px */
+    padding: 8px 12px; 
     background: #151617;
     border: 1px solid var(--line);
     border-radius: 10px;
@@ -174,12 +174,12 @@
   }
   
   .exchange .method-body strong { 
-    font-size: 13px; /* Було 15px */
+    font-size: 13px; 
     font-weight: 600; 
   }
   
   .exchange .method-body small { 
-    font-size: 11px; /* Було 12px */
+    font-size: 11px; 
     line-height: 1.25; 
     color: var(--muted); 
   }
@@ -191,7 +191,7 @@
   
   .exchange .summary { 
     display: grid; 
-    gap: 3px; /* Було 4px */
+    gap: 3px; 
     margin: 2px 0 0; 
     padding: 0 4px; 
   }
@@ -199,7 +199,7 @@
   .exchange .summary div { display: flex; justify-content: space-between; gap: 12px; }
   
   .exchange .summary dt,
-  .exchange .summary dd { margin: 0; font-size: 12px; /* Було 13px */ }
+  .exchange .summary dd { margin: 0; font-size: 12px;  }
   
   .exchange .summary dt { color: #c9ccc8; }
   
@@ -210,9 +210,9 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 12px; /* Було 18px */
+    padding: 12px; 
     font: inherit;
-    font-size: 14px; /* Було 16px */
+    font-size: 14px; 
     font-weight: 600;
     color: #12150a;
     background: var(--accent);
@@ -228,7 +228,7 @@
   
   .exchange .legal { 
     margin: 2px 0 0; 
-    font-size: 11px; /* Було 12px */
+    font-size: 11px;
     text-align: center; 
     color: #6f7371; 
     line-height: 1.3;
