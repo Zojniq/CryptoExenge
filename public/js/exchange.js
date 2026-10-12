@@ -21,32 +21,43 @@
     const rateLineEl = document.getElementById('rate-line');
     const resultLineEl = document.getElementById('result-line');
 
-    const symbols = { UAH: '₴', EUR: '€' };
+    const symbols = { UAH: '₴', EUR: '€', USD: '$' };
     const nf = new Intl.NumberFormat('uk-UA', { maximumFractionDigits: 0 });
     const nf2 = new Intl.NumberFormat('uk-UA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
     const parseAmount = (v) => Number(String(v).replace(/\D/g, '')) || 0;
 
-    function update() {
-        const code = currencyEl ? currencyEl.value : 'UAH';
-        const crypto = cryptoEl ? cryptoEl.value : 'USDT';
+    function getActiveRate(crypto, code) {
+        if (rates[crypto] && rates[crypto][code] !== undefined) {
+            return Number(rates[crypto][code]) || 0;
+        }
 
-        // Безпечне вилучення курсу як чистого числа
         let rawRate = rates[code];
         if (typeof rawRate === 'object' && rawRate !== null) {
             rawRate = rawRate[code] || Object.values(rawRate)[0];
         }
-        const rate = Number(rawRate) || 0;
+        return Number(rawRate) || 0;
+    }
+
+    function update() {
+        const code = currencyEl ? currencyEl.value : 'UAH';
+        const crypto = cryptoEl ? cryptoEl.value : 'USDT';
+        const rate = getActiveRate(crypto, code);
 
         const currentAmount = amountEl ? parseAmount(amountEl.value) : 0;
-        const usdt = rate > 0 ? currentAmount / rate : 0;
+        const totalCrypto = rate > 0 ? currentAmount / rate : 0;
 
-        if (fiatCoinEl) fiatCoinEl.textContent = symbols[code] || code[0];
-        if (cryptoNameEl) cryptoNameEl.textContent = crypto;
+        if (fiatCoinEl) {
+            fiatCoinEl.textContent = symbols[code] || code[0] || '₴';
+        }
+
+        if (cryptoNameEl) {
+            cryptoNameEl.textContent = crypto;
+        }
 
         if (cryptoHintEl && cryptoEl && cryptoEl.selectedOptions[0]) {
             const network = cryptoEl.selectedOptions[0].dataset.network || '';
-            cryptoHintEl.textContent = 'Мережа ' + network;
+            cryptoHintEl.textContent = network ? `Мережа ${network}` : '';
         }
 
         if (rateLineEl) {
@@ -54,13 +65,23 @@
         }
 
         if (resultLineEl) {
-            resultLineEl.textContent = `~${nf.format(usdt)} ${crypto}`;
+            resultLineEl.textContent = `~${nf.format(totalCrypto)} ${crypto}`;
         }
     }
 
+    // Форматування суми із захистом від стрибків курсора
     if (amountEl) {
         amountEl.addEventListener('input', () => {
-            amountEl.value = nf.format(parseAmount(amountEl.value)).replace(/\u00a0/g, ' ');
+            const cursor = amountEl.selectionStart;
+            const prevLen = amountEl.value.length;
+            const numericValue = parseAmount(amountEl.value);
+
+            amountEl.value = numericValue > 0 ? nf.format(numericValue).replace(/\u00a0/g, ' ') : '';
+
+            const newLen = amountEl.value.length;
+            const newCursor = Math.max(0, cursor + (newLen - prevLen));
+            amountEl.setSelectionRange(newCursor, newCursor);
+
             update();
         });
     }
@@ -68,20 +89,31 @@
     if (currencyEl) currencyEl.addEventListener('change', update);
     if (cryptoEl) cryptoEl.addEventListener('change', update);
 
+    // Дата за замовчуванням
     if (dateEl) {
         const today = new Date();
         const iso = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
             .toISOString()
             .slice(0, 10);
         dateEl.min = iso;
-        dateEl.value = iso;
+        if (!dateEl.value) {
+            dateEl.value = iso;
+        }
     }
 
-    form.addEventListener('submit', () => {
+    // Валідація та очищення суми перед надсиланням на сервер
+    form.addEventListener('submit', (e) => {
         if (amountEl) {
-            amountEl.value = parseAmount(amountEl.value);
+            const cleanAmount = parseAmount(amountEl.value);
+            if (cleanAmount <= 0) {
+                e.preventDefault();
+                amountEl.focus();
+                return;
+            }
+            amountEl.value = cleanAmount;
         }
     });
+
 
     update();
 })();
