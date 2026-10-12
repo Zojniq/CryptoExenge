@@ -12,7 +12,7 @@ const data = {
     title: 'ВЕКТОР — криптообмінник',
     methods: [
         { id: 'cash', title: 'Готівка в обміннику', text: 'Резервуй суму на обрану дату й забери особисто' },
-        { id: 'p2p', title: 'P2P обмін', text: 'Обмін без фізичного візиту — онлайн між сторонами' },
+        // { id: 'p2p', title: 'P2P обмін', text: 'Обмін без фізичного візиту — онлайн між сторонами' },
     ],
     cryptos: [
         { code: 'USDT', network: 'TRON · TRC-20' },
@@ -63,7 +63,8 @@ app.get('/', async (req, res) => {
     }
 
     res.render('index', {
-        ...data,
+      ...data,
+        // isP2P: false,
         rates: {
             UAH: uahRate,
             EUR: eurRate,
@@ -71,6 +72,7 @@ app.get('/', async (req, res) => {
         }
     });
 });
+
 
 app.post('/orders', (req, res) => {
     console.log('new order:', req.body);
