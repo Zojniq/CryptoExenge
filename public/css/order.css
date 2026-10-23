@@ -1,0 +1,195 @@
+:root {
+    --bg-dark: #121212;
+    --bg-card: #1E1E1E;
+    --accent-green: #D3FF52;
+    --text-main: #FFFFFF;
+    --text-muted: #A0A0A0;
+    --border-color: #2A2A2A;
+    --font-family: 'Inter', sans-serif;
+    --accent: #dcf56e;
+}
+
+.success {
+  position: relative;
+  width: 165px;
+  height: 165px;
+  margin: 20px auto 24px;
+  display: grid;
+  place-items: center;
+}
+
+.success__ring--outer {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(220, 245, 110, 0.12);
+  background: radial-gradient(circle, rgba(220, 245, 110, 0.10) 0%, transparent 70%);
+  opacity: 0;
+  animation: ring-in 0.6s ease-out 0.3s forwards,
+             pulse 3s ease-in-out 1s infinite;
+}
+
+.success__ring--inner {
+  position: absolute;
+  inset: 20px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(220, 245, 110, 0.4);
+  opacity: 0;
+  animation: ring-in 0.6s ease-out 0.2s forwards,
+             pulse 3s ease-in-out 1.5s infinite;
+}
+
+.success::after {
+  content: "";
+  position: absolute;
+  inset: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  opacity: 0;
+  animation: ripple 2.4s ease-out 0.8s infinite;
+}
+
+.success__core {
+  position: relative;
+  z-index: 1;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 40px rgba(220, 245, 110, 0.35);
+  animation: pop 0.5s cubic-bezier(.2, 1.4, .4, 1) both;
+}
+
+.success__core path {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: draw 0.45s ease-out 0.35s forwards;
+}
+
+@keyframes pop     { from { transform: scale(.5); opacity: 0 } to { transform: scale(1); opacity: 1 } }
+@keyframes draw    { to { stroke-dashoffset: 0 } }
+@keyframes ring-in { from { transform: scale(.7); opacity: 0 } to { transform: scale(1); opacity: 1 } }
+@keyframes pulse   { 0%, 100% { transform: scale(1); opacity: 1 } 50% { transform: scale(1.06); opacity: .6 } }
+@keyframes ripple  { 0% { transform: scale(1); opacity: .5 } 100% { transform: scale(1.9); opacity: 0 } }
+
+
+
+.main {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 20px 16px 0;
+}
+
+.main-text{
+    position: relative;
+    display: grid;
+    place-items: center;
+    margin: 0px auto 32px;
+    text-align: center;
+}
+
+.main-text p {
+    color: var(--text-muted);
+    padding: 10px;
+}
+
+.main-text p:first-child {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8b8f8c;
+    padding: 0 0 8px;
+}
+
+.main-text h2 {
+    color: var(--text-main);
+    font-size: clamp(32px, 4.5vw, 50px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.order-details{
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0px auto 24px;
+    padding: 18px 20px 20px;
+    display: grid;
+    gap: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    background-color: var(--bg-card);
+}
+
+.order-details h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-main);
+}
+
+.orderInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    min-height: 72px;
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background-color: var(--bg-dark);
+}
+
+.orderInfo-label {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.orderInfo-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.orderInfo-value.green-text {
+    color: var(--accent);
+    letter-spacing: 0.04em;
+}
+
+.orderInfo-muted {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.order-note {
+    margin-top: 6px;
+    font-size: 11px;
+    line-height: 1.3;
+    text-align: center;
+    color: #6f7371;
+}
+
+.order-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+@media (max-width: 560px) {
+    .success {
+        width: 140px;
+        height: 140px;
+    }
+
+    .order-deteils {
+        padding: 16px 14px;
+    }
+
+    .orderInfo-value {
+        font-size: 16px;
+    }
+}

@@ -64,7 +64,6 @@ app.get('/', async (req, res) => {
 
     res.render('index', {
       ...data,
-        // isP2P: false,
         rates: {
             UAH: uahRate,
             EUR: eurRate,
@@ -73,11 +72,15 @@ app.get('/', async (req, res) => {
     });
 });
 
-
 app.post('/orders', (req, res) => {
-    console.log('new order:', req.body);
-    res.send('Замовлення прийнято (демо)');
+  console.log('new order:', req.body);
+  res.redirect('/order');
 });
+
+app.get('/order', (req, res) => {
+  res.render('order');
+});
+
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

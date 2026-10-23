@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВЕКТОР — криптообмінник</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/content.css">
+    <link rel="stylesheet" href="/css/order.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <%- include('partials/header') %>
+
+    <main>
+        <div class="main">
+            <div class="success">
+                <div class="success__ring success__ring--outer"></div>
+                <div class="success__ring success__ring--inner"></div>
+                <div class="success__core">
+                    <svg viewBox="0 0 24 24" width="40" height="40" fill="none"
+                         stroke="#0b0b0b" stroke-width="2.8"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12.5l4.5 4.5L19 7.5" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="main-text">
+                <p>Замовлення створено</p>
+                <h2>Готівка тебе чекає</h2>
+                <p>Покажи номер замовлення у відділенні і отримай готівку</p>
+            </div>
+
+            <div class="order-details">
+                <h2>Деталі замовлення</h2>
+                <div class="orderInfo">
+                    <span class="orderInfo-label">Номер замовлення</span>
+                    <span class="orderInfo-value green-text">#000000</span>
+                </div>
+                <div class="orderInfo">
+                    <span class="orderInfo-label">Сума готівки</span>
+                    <span class="orderInfo-value">100 000 UAH</span>
+                </div>
+                <div class="orderInfo">
+                    <span class="orderInfo-label">Крипта для оплати</span>
+                    <span class="orderInfo-value">~2 424 USDT <span class="orderInfo-muted">· TRC20</span></span>
+                </div>
+                <div class="orderInfo">
+                    <span class="orderInfo-label">Відділення та час</span>
+                    <span class="orderInfo-value">Назва відділення <span class="orderInfo-muted">· 01.01.2026, 12:00</span></span>
+                </div>
+                <p class="order-note">Остаточний курс і наявність готівки підтвердимо перед зустріччю.</p>
+            </div>
+
+            <div class="order-actions">
+                <a class="btn" href="/">На головну</a>
+            </div>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

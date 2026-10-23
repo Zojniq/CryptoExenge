@@ -2,6 +2,14 @@
   "name": "cryptoexchenge",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://github.com/Zojniq/CryptoExenge#readme",
+  "bugs": {
+    "url": "https://github.com/Zojniq/CryptoExenge/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zojniq/CryptoExenge.git"
+  },
   "license": "ISC",
   "author": "Zakhar",
   "type": "module",
