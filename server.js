@@ -73,12 +73,13 @@ app.get('/', async (req, res) => {
     });
 });
 
-try {
-  const rows = await pool.query("SELECT * FROM branches");
-  console.log("DB connected:", rows);
-} catch (err) {
-  console.error("Error DB:", err.message);
-}
+// task 1 закрита.
+// try {
+//   const rows = await pool.query("SELECT * FROM branches");
+//   console.log("DB connected:", rows);
+// } catch (err) {
+//   console.error("Error DB:", err.message);
+// }
 
 app.post('/orders', (req, res) => {
   console.log('new order:', req.body);
