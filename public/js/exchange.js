@@ -41,7 +41,7 @@
 
     function update() {
         const code = currencyEl ? currencyEl.value : 'UAH';
-        const crypto = cryptoEl ? cryptoEl.value : 'USDT';
+        const crypto = cryptoEl ? cryptoEl.selectedOptions[0].dataset.code : 'USDT';
         const rate = getActiveRate(crypto, code);
 
         const currentAmount = amountEl ? parseAmount(amountEl.value) : 0;

@@ -1,6 +1,6 @@
-import { pool } from "./db/db.js"
 import express from 'express';
 import axios from 'axios';
+import { getBranches, getCryptos, getSlots } from './db/catalog.js';
 
 const app = express();
 const port = 3000;
@@ -13,24 +13,13 @@ const data = {
     title: 'ВЕКТОР — криптообмінник',
     methods: [
         { id: 'cash', title: 'Готівка в обміннику', text: 'Резервуй суму на обрану дату й забери особисто' },
-        // { id: 'p2p', title: 'P2P обмін', text: 'Обмін без фізичного візиту — онлайн між сторонами' },
-    ],
-    cryptos: [
-        { code: 'USDT', network: 'TRON · TRC-20' },
-        { code: 'USDC', network: 'Polygon' },
-    ],
-    branches: [
-        { id: 'kyiv-zoloti-vorota', name: 'Київ, м. Золоті Ворота 2' },
-        { id: 'kyiv-maidan', name: 'Київ, м. Майдан Незалежності 1' },
-      { id: 'kyiv-golosievo', name: 'Київ, вул. Голосіївський проспект 17А' }
-    ],
-    slots: ['10:00 — 11:00', '12:00 — 13:00', '14:00 — 15:00', '16:00 — 17:00'],
+  ]
 };
 
 app.get('/', async (req, res) => {
-    let uahRate = 41.5;
-    let eurRate = 45.0;
-    let usdRate = 1.0;
+  let uahRate = 41.5;
+  let eurRate = 45.0;
+  let usdRate = 1.0;
 
     // 1. Курс USDT до UAH
     try {
@@ -63,8 +52,15 @@ app.get('/', async (req, res) => {
         console.error('Не вдалося отримати курс USDT/USD:', error.message);
     }
 
+  const branches = await getBranches();
+  const cryptos = await getCryptos();
+  const slots = await getSlots();
+
     res.render('index', {
       ...data,
+      branches: branches,
+      cryptos: cryptos,
+      slots: slots,
         rates: {
             UAH: uahRate,
             EUR: eurRate,
@@ -72,14 +68,6 @@ app.get('/', async (req, res) => {
         }
     });
 });
-
-// task 1 закрита.
-// try {
-//   const rows = await pool.query("SELECT * FROM branches");
-//   console.log("DB connected:", rows);
-// } catch (err) {
-//   console.error("Error DB:", err.message);
-// }
 
 app.post('/orders', (req, res) => {
   console.log('new order:', req.body);
