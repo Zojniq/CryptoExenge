@@ -11,6 +11,9 @@ export async function getRates() {
       const response = await axios.get('https://api.binance.com/api/v3/ticker/price?symbol=USDTUAH', { timeout: 5000 });
       if (response.data?.price) {
           uahRate = Number(parseFloat(response.data.price).toFixed(2));
+      } else {
+          source = 'fallback';
+          console.error('Binance повернув неочікувану відповідь для USDT/UAH:', response.data);
       }
   } catch (error) {
       source = 'fallback';
@@ -21,8 +24,11 @@ export async function getRates() {
   try {
     const response = await axios.get('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&json', { timeout: 5000 });
       if (Array.isArray(response.data) && response.data[0]?.rate) {
-          const nbuEurUah = response.data[0].rate;
-          eurRate = Number((uahRate / nbuEurUah).toFixed(2));
+        const nbuEurUah = response.data[0].rate;
+        eurRate = Number((uahRate / nbuEurUah).toFixed(2));
+      } else {
+          source = 'fallback';
+          console.error('NBUService повернув неочікувану відповідь для EUR:', response.data);
       }
   } catch (error) {
       source = 'fallback';
@@ -34,6 +40,9 @@ export async function getRates() {
       const response = await axios.get('https://api.binance.com/api/v3/ticker/price?symbol=USDTUSD', { timeout: 5000 });
       if (response.data?.price) {
           usdRate = Number(parseFloat(response.data.price).toFixed(2));
+      } else {
+          source = 'fallback';
+          console.error('Binance повернув неочікувану відповідь для USDT/USD:', response.data);
       }
   } catch (error) {
       source = 'fallback';
