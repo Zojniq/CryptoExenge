@@ -1,5 +1,5 @@
 import express from 'express';
-import { createOrder } from './db/orders.js';
+import { createOrder, getOrderByCode } from './db/orders.js';
 import { getBranches, getCryptos, getSlots } from './db/catalog.js';
 import { getRates } from './services/rates.js';
 
@@ -99,8 +99,13 @@ app.post('/orders', async (req, res) => {
   res.redirect(`/orders/${code}`);
 });
 
-app.get('/order', (req, res) => {
-  res.render('order');
+app.get('/orders/:code', async (req, res) => {
+  const order = await getOrderByCode(req.params.code);
+  if (order === undefined) {
+    return res.status(404).send("Заявку не знайдено.");
+  } else {
+    res.render('order', { order });
+  }
 });
 
 

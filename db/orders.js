@@ -15,3 +15,21 @@ export async function createOrder(order) {
 
   return rows[0].public_code;
 }
+
+
+export async function getOrderByCode(code) {
+  const rows = await pool.query(
+    `SELECT orders.*,
+           branches.name AS branch_name,
+           cryptos.code AS crypto_code,
+           cryptos.network,
+           time_slots.start_time,
+           time_slots.end_time
+     FROM orders
+     JOIN branches ON branches.id = orders.branch_id
+     JOIN cryptos ON cryptos.id = orders.crypto_id
+     JOIN time_slots ON time_slots.id = orders.slot_id
+     WHERE public_code = ?`,
+     [code]);
+  return rows[0];
+}
