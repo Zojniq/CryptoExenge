@@ -12,6 +12,7 @@
 
 
 .site-header {
+    position: relative;
     padding: 20px 0;
 }
 
@@ -80,9 +81,55 @@
     opacity: 0.8;
 }
 
+/* Кнопка мобільного меню — видно лише на вузьких екранах */
+.nav-toggle {
+    display: none;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    color: var(--text);
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
 @media (max-width: 760px) {
+    .header-actions {
+        gap: 10px;
+    }
+
+    .nav-toggle {
+        display: grid;
+    }
+
     .main-nav {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        flex-direction: column;
+        gap: 0;
+        padding: 8px 20px 16px;
+        background: var(--card);
+        border-bottom: 1px solid var(--line);
+    }
+
+    .main-nav.is-open {
+        display: flex;
+    }
+
+    .main-nav .nav-link {
+        padding: 14px 0;
+        font-size: 16px;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .main-nav .nav-link:last-child {
+        border-bottom: 0;
     }
 
     .footer-inner {
