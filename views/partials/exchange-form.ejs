@@ -34,7 +34,7 @@
             <span class="coin">₮</span>
             <select name="crypto" id="crypto" aria-label="Криптовалюта">
               <% cryptos.forEach(c => { %>
-                <option value="<%= c.code %>" data-network="<%= c.network %>"><%= c.code %></option>
+                <option value="<%= c.id %>" data-code="<%= c.code%>" data-network="<%= c.network %>"><%= c.code %></option>
               <% }) %>
             </select>
           </label>
@@ -61,7 +61,7 @@
           <label class="pill pill-time">
             <select name="time" id="time" aria-label="Час візиту">
               <% slots.forEach(s => { %>
-                <option value="<%= s %>"><%= s %></option>
+                <option value="<%= s.id %>"><%= s.start_time.slice(0, 5) %> - <%= s.end_time.slice(0, 5) %></option>
               <% }) %>
             </select>
           </label>
