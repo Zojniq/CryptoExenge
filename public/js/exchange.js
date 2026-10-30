@@ -65,8 +65,32 @@
         }
 
         if (resultLineEl) {
-            resultLineEl.textContent = `~${nf.format(totalCrypto)} ${crypto}`;
+            showResult(totalCrypto, crypto);
         }
+    }
+
+    // Лічильник USDT: число «докручується» до нового значення (GSAP)
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const counter = { n: 0 };
+
+    function showResult(total, crypto) {
+        const render = () => {
+            resultLineEl.textContent = `~${nf.format(counter.n)} ${crypto}`;
+        };
+
+        if (!window.gsap || reduceMotion) {
+            counter.n = total;
+            render();
+            return;
+        }
+
+        gsap.to(counter, {
+            n: total,
+            duration: 0.5,
+            ease: 'power2.out',
+            overwrite: true,
+            onUpdate: render,
+        });
     }
 
     // Форматування суми із захистом від стрибків курсора
