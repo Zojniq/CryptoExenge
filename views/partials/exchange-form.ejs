@@ -11,7 +11,7 @@
       <div class="block">
         <label class="label" for="amount">Сума готівки</label>
         <div class="row">
-          <input class="big" type="text" inputmode="numeric" id="amount" name="amount"
+          <input class="big amount" type="text" inputmode="numeric" id="amount" name="amount"
                  value="100 000" autocomplete="off" required>
           <label class="pill">
             <span class="coin" id="fiat-coin">₴</span>
@@ -24,6 +24,9 @@
         </div>
         <p class="hint" id="amount-hint">Вкажи потрібну суму готівки · UAH або EUR</p>
       </div>
+
+      <!-- Напрям обміну: крипта → готівка -->
+      <div class="swap" aria-hidden="true"><i class="bi bi-arrow-down-up"></i></div>
 
       <!-- Крипта -->
       <div class="block">
@@ -72,11 +75,11 @@
       <!-- Розрахунок -->
       <dl class="summary">
             <div><dt id="rate-line">1 USDT ≈ <%= rates.UAH %> UAH</dt></div>
-            <div><dt id="result-line">~2 424 USDT</dt><dd>Орієнтовно</dd></div>
+            <div><dt class="result" id="result-line">~2 424 USDT</dt><dd>Орієнтовно</dd></div>
       </dl>
 
       <button class="submit" type="submit">
-        Зарезервувати готівку <span aria-hidden="true">↗</span>
+        Зарезервувати готівку <span class="submit-arrow" aria-hidden="true">↗</span>
       </button>
 
       <p class="legal">Це демонстраційний розрахунок, не оферта. Остаточний курс, комісії, наявність готівки та час зустрічі уточнюються під час створення замовлення.</p>

@@ -97,6 +97,38 @@
   }
   
   .exchange .row .big { flex: 1; }
+
+  /* Amount · 40 · ExtraBold · −2% */
+  .exchange .amount {
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  /* Кружечок напрямку обміну на стику двох блоків */
+  .exchange .swap {
+    position: relative;
+    z-index: 1;
+    height: 0;
+    margin: -4px 0;
+  }
+
+  .exchange .swap i {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    color: var(--lime);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
   
   .exchange .date { 
     font-size: 16px; 
@@ -197,27 +229,49 @@
   .exchange .summary dt { color: var(--muted); }
   
   .exchange .summary dd { color: var(--hint); }
-  
+
+  .exchange .summary div:has(.result) { align-items: baseline; }
+
+  /* Result · 30 · ExtraBold · lime */
+  .exchange .summary .result {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--lime);
+  }
+
   .exchange .submit {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 12px; 
+    padding: 14px;
     font: inherit;
-    font-size: 14px; 
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 700;
     color: #12150a;
     background: var(--lime);
     border: 0;
     border-radius: var(--radius);
+    box-shadow: 0 6px 24px rgba(221, 245, 107, 0.22);
     cursor: pointer;
-    transition: transform .15s, filter .15s;
+    transition: transform .25s, box-shadow .25s;
   }
-  
-  .exchange .submit:hover { filter: brightness(1.05); }
-  
-  .exchange .submit:active { transform: scale(.99); }
+
+  .exchange .submit-arrow {
+    display: inline-block;
+    transition: transform .25s;
+  }
+
+  .exchange .submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 40px rgba(221, 245, 107, 0.4);
+  }
+
+  .exchange .submit:hover .submit-arrow { transform: translateX(3px); }
+
+  .exchange .submit:active { transform: translateY(0) scale(.99); }
   
   .exchange .legal { 
     margin: 2px 0 0; 
@@ -237,6 +291,8 @@
     .exchange { padding: 14px 10px; }
     .exchange .methods { grid-template-columns: 1fr; }
     .exchange .big { font-size: 18px; }
+    .exchange .amount { font-size: 34px; }
+    .exchange .summary .result { font-size: 26px; }
   }
   
   @media (prefers-reduced-motion: reduce) {
