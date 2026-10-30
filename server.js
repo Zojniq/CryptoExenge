@@ -102,12 +102,32 @@ app.post('/orders', async (req, res) => {
 app.get('/orders/:code', async (req, res) => {
   const order = await getOrderByCode(req.params.code);
   if (order === undefined) {
-    return res.status(404).send("Заявку не знайдено.");
+    return res.status(404).render('error', {
+      status: 404,
+      heading: "Заявку не знайдено",
+      message: "Перевір номер замовлення або створи нову заявку."
+    });
   } else {
     res.render('order', { order });
   }
 });
 
+app.use((req, res, next) => {
+  res.status(404).render('error', {
+    status: 404,
+    heading: "Сторінку не знайдено",
+    message: "Перевір адресу або повернись на головну."
+  });
+});
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).render('error', {
+    status: 500,
+    heading: "Щось пішло не так",
+    message: "Спробуй пізніше."
+  });
+});
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
