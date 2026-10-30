@@ -16,6 +16,22 @@
     border-radius: 20px; 
   }
   
+  /* Підсвітка за курсором (координати --mx/--my ставить animations.js) */
+  .exchange { position: relative; }
+
+  .exchange::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(221, 245, 107, 0.07), transparent 60%);
+    opacity: 0;
+    transition: opacity .3s;
+  }
+
+  .exchange.is-lit::after { opacity: 1; }
+
   .exchange .card-head {
     display: flex;
     align-items: center;
