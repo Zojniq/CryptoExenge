@@ -40,19 +40,19 @@
                 <h2>Деталі замовлення</h2>
                 <div class="orderInfo">
                     <span class="orderInfo-label">Номер замовлення</span>
-                    <span class="orderInfo-value green-text">#000000</span>
+                    <span class="orderInfo-value green-text">#<%= order.public_code %></span>
                 </div>
                 <div class="orderInfo">
                     <span class="orderInfo-label">Сума готівки</span>
-                    <span class="orderInfo-value">100 000 UAH</span>
+                    <span class="orderInfo-value"><%= Number(order.fiat_amount).toLocaleString('uk-UA') %> <%= order.fiat_currency %></span>
                 </div>
                 <div class="orderInfo">
                     <span class="orderInfo-label">Крипта для оплати</span>
-                    <span class="orderInfo-value">~2 424 USDT <span class="orderInfo-muted">· TRC20</span></span>
+                    <span class="orderInfo-value">~<%= Math.round(order.crypto_amount).toLocaleString('uk-UA') %> <%= order.crypto_code %> <span class="orderInfo-muted">· <%= order.network %></span></span>
                 </div>
                 <div class="orderInfo">
                     <span class="orderInfo-label">Відділення та час</span>
-                    <span class="orderInfo-value">Назва відділення <span class="orderInfo-muted">· 01.01.2026, 12:00</span></span>
+                    <span class="orderInfo-value"><%= order.branch_name %> <span class="orderInfo-muted">· <%= order.visit_date.toLocaleDateString('uk-UA') %>, <%= order.start_time.slice(0, 5) %>–<%= order.end_time.slice(0, 5) %></span></span>
                 </div>
                 <p class="order-note">Остаточний курс і наявність готівки підтвердимо перед зустріччю.</p>
             </div>
