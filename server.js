@@ -62,7 +62,33 @@ app.post('/orders', async (req, res) => {
   }
 
   if (!/^\d{4}-\d{2}-\d{2}$/.test(visitDate)) {
-    return res.status(400).send("Невідомий формат дати.");
+      return res.status(400).send("Невідомий формат дати.");
+  }
+
+  const d = new Date(visitDate);
+
+  if (isNaN(d) || d.toISOString().slice(0, 10) !== visitDate) {
+    return res.status(400).send("Такої дати не існує.");
+  }
+
+  if (visitDate < new Date().toLocaleDateString("sv-SE")) {
+    return res.status(400).send("Дата візиту вже минула.");
+  }
+
+  const branches = await getBranches();
+  const cryptos = await getCryptos();
+  const slots = await getSlots();
+
+  if (!branches.some(b => b.id === branchId)) {
+    return res.status(400).send("Невірне відділення.");
+  }
+
+  if (!cryptos.some(c => c.id === cryptoId)) {
+    return res.status(400).send("Невідомий коін.");
+  }
+
+  if (!slots.some(s => s.id === slotId)) {
+    return res.status(400).send("Невідомий час.");
   }
 
   const { rates, source } = await getRates();
@@ -73,17 +99,6 @@ app.post('/orders', async (req, res) => {
 
   const rate = rates[currency];
   const cryptoAmount = Number((fiatAmount / rate).toFixed(6));
-
-  console.log("Усе валідно.", {
-    fiatAmount,
-    branchId,
-    cryptoId,
-    slotId,
-    currency,
-    visitDate
-  });
-
-  console.log(rate, cryptoAmount);
 
   const code = await createOrder({
     branch_id: branchId,
