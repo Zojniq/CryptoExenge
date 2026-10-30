@@ -34,6 +34,48 @@
                         <span class="check-icon green-text"><i class="bi bi-check-lg"></i></span> P2P як альтернатива
                     </li>
                 </ul>
+
+                <%
+                    // Українські форми множини: 1 відділення, 2 слоти, 5 слотів
+                    const plural = (n, one, few, many) => {
+                        const m10 = n % 10, m100 = n % 100;
+                        if (m10 === 1 && m100 !== 11) return one;
+                        if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return few;
+                        return many;
+                    };
+                %>
+                <dl class="stats">
+                    <div>
+                        <dt><%= branches.length %></dt>
+                        <dd><%= plural(branches.length, 'відділення', 'відділення', 'відділень') %></dd>
+                    </div>
+                    <div>
+                        <dt><%= slots.length %></dt>
+                        <dd><%= plural(slots.length, 'слот', 'слоти', 'слотів') %> щодня</dd>
+                    </div>
+                    <div>
+                        <dt><%= cryptos.length %></dt>
+                        <dd><%= plural(cryptos.length, 'криптовалюта', 'криптовалюти', 'криптовалют') %></dd>
+                    </div>
+                </dl>
+
+                <ol class="how">
+                    <li class="step">
+                        <span class="step__num">1</span>
+                        <strong>Заявка</strong>
+                        <span>Сума, крипта, відділення й час</span>
+                    </li>
+                    <li class="step">
+                        <span class="step__num">2</span>
+                        <strong>Підтвердження</strong>
+                        <span>Перевіряємо готівку й курс</span>
+                    </li>
+                    <li class="step">
+                        <span class="step__num">3</span>
+                        <strong>Готівка</strong>
+                        <span>Забираєш у відділенні</span>
+                    </li>
+                </ol>
             </section>
             <section class="table">
                 <%- include('partials/exchange-form') %>
