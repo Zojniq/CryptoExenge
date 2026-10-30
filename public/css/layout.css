@@ -12,6 +12,7 @@
 
 
 .site-header {
+    position: relative;
     padding: 20px 0;
 }
 
@@ -68,14 +69,111 @@
 
 .btn {
     text-decoration: none;
-    color: #FFFFFFFF;
-    font-weight: 550;
+    color: var(--text);
+    font-weight: 600;
     font-size: 13px;
-    border: #FFFFFFFF 1px solid;
+    border: 1px solid var(--text);
     padding: 10px 20px;
     border-radius: 10px;
 }
 
 .btn:hover {
     opacity: 0.8;
+}
+
+/* Кнопка мобільного меню — видно лише на вузьких екранах */
+.nav-toggle {
+    display: none;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    color: var(--text);
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+@media (max-width: 760px) {
+    .header-actions {
+        gap: 10px;
+    }
+
+    .nav-toggle {
+        display: grid;
+    }
+
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        flex-direction: column;
+        gap: 0;
+        padding: 8px 20px 16px;
+        background: var(--card);
+        border-bottom: 1px solid var(--line);
+    }
+
+    .main-nav.is-open {
+        display: flex;
+    }
+
+    .main-nav .nav-link {
+        padding: 14px 0;
+        font-size: 16px;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .main-nav .nav-link:last-child {
+        border-bottom: 0;
+    }
+
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 420px) {
+    .footer-inner {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Живий фон: світіння + зерно (P3 з макету) */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::before {
+    inset: -20%;
+    background:
+        radial-gradient(circle at 25% 30%, rgba(221, 245, 107, 0.06), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(221, 245, 107, 0.04), transparent 45%);
+    animation: glow-drift 12s ease-in-out infinite alternate;
+}
+
+body::after {
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes glow-drift {
+    to { transform: translate(5%, -4%) scale(1.15); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body::before {
+        animation: none;
+    }
 }

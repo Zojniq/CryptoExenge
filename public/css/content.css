@@ -1,64 +1,44 @@
-
-:root {
-    --bg-dark: #121212;
-    --bg-card: #1E1E1E;
-    --accent-green: #D3FF52;
-    --text-main: #FFFFFF;
-    --text-muted: #A0A0A0;
-    --border-color: #2A2A2A;
-    --font-family: 'Inter', sans-serif;
-}
-
-body {
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    font-family: var(--font-family);
-    line-height: 1.5;
-}
-
-
-
 .site-header {
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--line);
 }
 
 .logo {
-    color: var(--text-main);
+    color: var(--text);
     text-decoration: none;
     font-weight: 700;
     font-size: 20px;
 }
 
 .logo-icon {
-    color: var(--accent-green);
+    color: var(--lime);
 }
 
 .nav-link {
-    color: var(--text-muted);
+    color: var(--muted);
     text-decoration: none;
     transition: color 0.3s;
     font-size: 14px;
 }
 
 .nav-link:hover {
-    color: var(--text-main);
+    color: var(--text);
 }
 
 
 
 .site-footer {
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--line);
 }
 
 .footer-col h4 {
-    color: var(--text-muted);
+    color: var(--muted);
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .footer-col a {
-    color: var(--text-main);
+    color: var(--text);
     text-decoration: none;
     font-size: 14px;
     transition: opacity 0.3s;
@@ -69,8 +49,8 @@ body {
 }
 
 .footer-bottom {
-    border-top: 1px solid var(--border-color);
-    color: var(--text-muted);
+    border-top: 1px solid var(--line);
+    color: var(--muted);
     font-size: 12px;
 }
 
@@ -109,31 +89,28 @@ body {
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.08em;
-    color: #8b8f8c;
+    color: var(--hint);
     text-transform: uppercase;
     margin: 0 0 12px 0;
 }
 
 
 .mainContent-text h2 {
-    font-size: clamp(34px, 4.5vw, 56px);
-    font-weight: 700;
-    line-height: 1.1;
+    font-size: clamp(40px, 5.5vw, 68px);
+    font-weight: 800;
+    line-height: 1.05;
     margin: 0;
-    color: #f3f4f1;
-    letter-spacing: -0.02em;
+    color: var(--text);
+    letter-spacing: -0.03em;
 }
 
 
-.green-text {
-    color: #d3f56a;
-}
 
 
 .mainContent-text > p:nth-of-type(2) {
-    font-size: clamp(15px, 1.15vw, 17px);
+    font-size: clamp(17px, 1.3vw, 19px);
     line-height: 1.6;
-    color: #8b8f8c;
+    color: var(--muted);
     max-width: 500px;
     margin: 20px 0 28px 0;
 }
@@ -154,7 +131,7 @@ body {
     gap: 12px;
     font-size: 15px;
     font-weight: 500;
-    color: #f3f4f1;
+    color: var(--text);
 }
 
 .check-icon {
@@ -163,6 +140,91 @@ body {
     justify-content: center;
     font-size: 18px;
     line-height: 1;
+}
+
+
+/* Цифри довіри — рахуються з БД */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 500px;
+    margin: 36px 0 0;
+}
+
+.stats div {
+    padding: 16px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+
+.stats dt {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--lime);
+}
+
+.stats dd {
+    margin: 8px 0 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--hint);
+}
+
+
+/* Міні-схема кроків */
+.how {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 500px;
+    margin: 28px 0 0;
+}
+
+.step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.step__num {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #12150a;
+    background: var(--lime);
+    border-radius: 50%;
+}
+
+/* лінія між кроками */
+.step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 16px;
+    left: 44px;
+    right: -4px;
+    height: 1px;
+    background: var(--line);
+}
+
+.step strong {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.step > span:last-child {
+    font-size: 13px;
+    color: var(--hint);
+    line-height: 1.4;
 }
 
 
@@ -185,10 +247,46 @@ body {
     }
 
     .mainContent-text .features-list {
-        align-items: flex-start; 
+        align-items: flex-start;
+    }
+
+    .stats,
+    .how {
+        width: 100%;
+        text-align: left;
     }
 
     .table {
-        justify-content: center; 
+        justify-content: center;
+    }
+}
+
+@media (max-width: 560px) {
+    .stats dt {
+        font-size: 32px;
+    }
+
+    .stats div {
+        padding: 12px;
+    }
+
+    .how {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .step {
+        display: grid;
+        grid-template-columns: 32px 1fr;
+        column-gap: 12px;
+    }
+
+    .step__num {
+        grid-row: span 2;
+        margin-bottom: 0;
+    }
+
+    .step:not(:last-child)::after {
+        display: none;
     }
 }

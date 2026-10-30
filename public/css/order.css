@@ -1,14 +1,3 @@
-:root {
-    --bg-dark: #121212;
-    --bg-card: #1E1E1E;
-    --accent-green: #D3FF52;
-    --text-main: #FFFFFF;
-    --text-muted: #A0A0A0;
-    --border-color: #2A2A2A;
-    --font-family: 'Inter', sans-serif;
-    --accent: #dcf56e;
-}
-
 .success {
   position: relative;
   width: 165px;
@@ -22,8 +11,8 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1px solid rgba(220, 245, 110, 0.12);
-  background: radial-gradient(circle, rgba(220, 245, 110, 0.10) 0%, transparent 70%);
+  border: 1px solid rgba(221, 245, 107, 0.12);
+  background: radial-gradient(circle, rgba(221, 245, 107, 0.10) 0%, transparent 70%);
   opacity: 0;
   animation: ring-in 0.6s ease-out 0.3s forwards,
              pulse 3s ease-in-out 1s infinite;
@@ -33,7 +22,7 @@
   position: absolute;
   inset: 20px;
   border-radius: 50%;
-  border: 1.5px solid rgba(220, 245, 110, 0.4);
+  border: 1.5px solid rgba(221, 245, 107, 0.4);
   opacity: 0;
   animation: ring-in 0.6s ease-out 0.2s forwards,
              pulse 3s ease-in-out 1.5s infinite;
@@ -44,7 +33,7 @@
   position: absolute;
   inset: 36px;
   border-radius: 50%;
-  border: 2px solid var(--accent);
+  border: 2px solid var(--lime);
   opacity: 0;
   animation: ripple 2.4s ease-out 0.8s infinite;
 }
@@ -55,10 +44,10 @@
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--lime);
   display: grid;
   place-items: center;
-  box-shadow: 0 0 40px rgba(220, 245, 110, 0.35);
+  box-shadow: 0 0 40px rgba(221, 245, 107, 0.35);
   animation: pop 0.5s cubic-bezier(.2, 1.4, .4, 1) both;
 }
 
@@ -91,7 +80,7 @@
 }
 
 .main-text p {
-    color: var(--text-muted);
+    color: var(--muted);
     padding: 10px;
 }
 
@@ -100,15 +89,16 @@
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #8b8f8c;
+    color: var(--hint);
     padding: 0 0 8px;
 }
 
 .main-text h2 {
-    color: var(--text-main);
-    font-size: clamp(32px, 4.5vw, 50px);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    color: var(--text);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
 }
 
 .order-details{
@@ -119,16 +109,94 @@
     padding: 18px 20px 20px;
     display: grid;
     gap: 8px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--line);
     border-radius: 20px;
-    background-color: var(--bg-card);
+    background-color: var(--card);
 }
 
-.order-details h2 {
-    font-size: 18px;
-    font-weight: 600;
+.order-details h2,
+.next-steps h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.order-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     margin-bottom: 6px;
-    color: var(--text-main);
+}
+
+.status {
+    flex: none;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+}
+
+.status--pending {
+    color: #F5C46B;
+    border-color: rgba(245, 196, 107, 0.4);
+}
+
+.status--confirmed,
+.status--completed {
+    color: var(--lime);
+    border-color: rgba(221, 245, 107, 0.4);
+}
+
+.next-steps {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 24px;
+    padding: 18px 20px 20px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background-color: var(--card);
+}
+
+.next-steps ol {
+    list-style: none;
+    counter-reset: step;
+    display: grid;
+    gap: 14px;
+    margin-top: 14px;
+}
+
+.next-steps li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    column-gap: 12px;
+}
+
+.next-steps li::before {
+    content: counter(step);
+    grid-row: span 2;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--lime);
+    border: 1px solid rgba(221, 245, 107, 0.4);
+    border-radius: 50%;
+}
+
+.next-steps strong {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.next-steps span {
+    font-size: 13px;
+    color: var(--hint);
 }
 
 .orderInfo{
@@ -138,39 +206,98 @@
     gap: 4px;
     min-height: 72px;
     padding: 12px 16px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--line);
     border-radius: 12px;
-    background-color: var(--bg-dark);
+    background-color: var(--field);
 }
 
 .orderInfo-label {
-    font-size: 12px;
-    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--hint);
 }
 
 .orderInfo-value {
     font-size: 18px;
     font-weight: 600;
-    color: var(--text-main);
+    color: var(--text);
 }
 
 .orderInfo-value.green-text {
-    color: var(--accent);
+    color: var(--lime);
     letter-spacing: 0.04em;
+}
+
+.orderInfo--code {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.orderCode {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.orderCode .orderInfo-value {
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    padding: 6px 12px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: border-color .2s, color .2s;
+}
+
+.copy-btn:hover {
+    border-color: var(--hint);
+}
+
+.copy-btn.is-done {
+    color: var(--lime);
+    border-color: var(--lime);
+}
+
+.orderQr {
+    flex: none;
+    width: 104px;
+    height: 104px;
+    padding: 8px;
+    background: #FFFFFF;
+    border-radius: 10px;
+}
+
+.orderQr svg {
+    display: block;
 }
 
 .orderInfo-muted {
     font-size: 14px;
     font-weight: 500;
-    color: var(--text-muted);
+    color: var(--muted);
 }
 
 .order-note {
     margin-top: 6px;
-    font-size: 11px;
-    line-height: 1.3;
+    font-size: 13px;
+    line-height: 1.4;
     text-align: center;
-    color: #6f7371;
+    color: var(--hint);
 }
 
 .order-actions {

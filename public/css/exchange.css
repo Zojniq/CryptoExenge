@@ -1,12 +1,4 @@
 .exchange {
-    --bg: #0e0f10;
-    --card: #151617;
-    --line: #27292b;
-    --text: #f3f4f1;
-    --muted: #8b8f8c;
-    --accent: #d3f56a;
-    --accent-soft: #232d17;
-    --radius: 12px; 
     color-scheme: dark;
   }
   
@@ -24,6 +16,22 @@
     border-radius: 20px; 
   }
   
+  /* Підсвітка за курсором (координати --mx/--my ставить animations.js) */
+  .exchange { position: relative; }
+
+  .exchange::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(221, 245, 107, 0.07), transparent 60%);
+    opacity: 0;
+    transition: opacity .3s;
+  }
+
+  .exchange.is-lit::after { opacity: 1; }
+
   .exchange .card-head {
     display: flex;
     align-items: center;
@@ -33,8 +41,8 @@
   
   .exchange h1 { 
     margin: 0; 
-    font-size: 20px; 
-    font-weight: 600; 
+    font-size: 22px; 
+    font-weight: 700; 
     letter-spacing: -0.01em; 
   }
   
@@ -42,8 +50,8 @@
     flex: none;
     padding: 2px 8px; 
     font-size: 11px; 
-    color: var(--accent);
-    background: var(--accent-soft);
+    color: var(--lime);
+    background: var(--lime-soft);
     border: 1px solid #34431f;
     border-radius: 6px;
   }
@@ -51,14 +59,14 @@
   .exchange .lead { 
     margin: 0; 
     color: var(--muted); 
-    font-size: 13px; 
+    font-size: 14px; 
     line-height: 1.35;
   }
   
   .exchange .block {
     margin: 0;
     padding: 10px 14px; 
-    background: #111213;
+    background: var(--field);
     border: 1px solid var(--line);
     border-radius: var(--radius);
   }
@@ -78,8 +86,9 @@
   
   .exchange .hint { 
     margin: 4px 0 0; 
-    font-size: 11px; 
-    color: #6f7371; 
+    font-size: 13px; 
+    font-weight: 500;
+    color: var(--hint); 
   }
   
   .exchange .row { 
@@ -104,6 +113,38 @@
   }
   
   .exchange .row .big { flex: 1; }
+
+  /* Amount · 40 · ExtraBold · −2% */
+  .exchange .amount {
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  /* Кружечок напрямку обміну на стику двох блоків */
+  .exchange .swap {
+    position: relative;
+    z-index: 1;
+    height: 0;
+    margin: -4px 0;
+  }
+
+  .exchange .swap i {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    color: var(--lime);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
   
   .exchange .date { 
     font-size: 16px; 
@@ -116,7 +157,7 @@
     align-items: center;
     gap: 6px;
     padding: 2px 8px 2px 3px; 
-    background: #1b1d1e;
+    background: #1B1B1B;
     border: 1px solid var(--line);
     border-radius: 999px;
   }
@@ -130,8 +171,8 @@
     height: 24px;
     font-size: 13px; 
     font-weight: 600;
-    color: var(--accent);
-    background: #0e0f10;
+    color: var(--lime);
+    background: var(--bg);
     border-radius: 50%;
   }
   
@@ -142,7 +183,7 @@
     font-size: 13px;
     font-weight: 500;
     color: var(--text);
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' fill='none' stroke='%238b8f8c' stroke-width='1.6'%3E%3Cpath d='m1 1.5 4 4 4-4'/%3E%3C/svg%3E") no-repeat right center;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' fill='none' stroke='%239A9A9A' stroke-width='1.6'%3E%3Cpath d='m1 1.5 4 4 4-4'/%3E%3C/svg%3E") no-repeat right center;
     border: 0;
     outline: 0;
     cursor: pointer;
@@ -167,7 +208,7 @@
     gap: 2px;
     height: 100%;
     padding: 8px 12px; 
-    background: #151617;
+    background: var(--card);
     border: 1px solid var(--line);
     border-radius: 10px;
     transition: border-color .15s, background-color .15s;
@@ -179,14 +220,14 @@
   }
   
   .exchange .method-body small { 
-    font-size: 11px; 
+    font-size: 12px; 
     line-height: 1.25; 
     color: var(--muted); 
   }
   
   .exchange .method input:checked + .method-body { 
-    background: var(--accent-soft); 
-    border-color: var(--accent); 
+    background: var(--lime-soft); 
+    border-color: var(--lime); 
   }
   
   .exchange .summary { 
@@ -199,51 +240,75 @@
   .exchange .summary div { display: flex; justify-content: space-between; gap: 12px; }
   
   .exchange .summary dt,
-  .exchange .summary dd { margin: 0; font-size: 12px;  }
+  .exchange .summary dd { margin: 0; font-size: 13px;  }
   
-  .exchange .summary dt { color: #c9ccc8; }
+  .exchange .summary dt { color: var(--muted); }
   
-  .exchange .summary dd { color: #6f7371; }
-  
+  .exchange .summary dd { color: var(--hint); }
+
+  .exchange .summary div:has(.result) { align-items: baseline; }
+
+  /* Result · 30 · ExtraBold · lime */
+  .exchange .summary .result {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--lime);
+  }
+
   .exchange .submit {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 12px; 
+    padding: 14px;
     font: inherit;
-    font-size: 14px; 
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 700;
     color: #12150a;
-    background: var(--accent);
+    background: var(--lime);
     border: 0;
     border-radius: var(--radius);
+    box-shadow: 0 6px 24px rgba(221, 245, 107, 0.22);
     cursor: pointer;
-    transition: transform .15s, filter .15s;
+    transition: transform .25s, box-shadow .25s;
   }
-  
-  .exchange .submit:hover { filter: brightness(1.05); }
-  
-  .exchange .submit:active { transform: scale(.99); }
+
+  .exchange .submit-arrow {
+    display: inline-block;
+    transition: transform .25s;
+  }
+
+  .exchange .submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 40px rgba(221, 245, 107, 0.4);
+  }
+
+  .exchange .submit:hover .submit-arrow { transform: translateX(3px); }
+
+  .exchange .submit:active { transform: translateY(0) scale(.99); }
   
   .exchange .legal { 
     margin: 2px 0 0; 
-    font-size: 11px;
+    font-size: 12px;
     text-align: center; 
-    color: #6f7371; 
+    color: var(--hint); 
     line-height: 1.3;
   }
   
-  .exchange :focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+  .exchange :focus-visible { outline: 1px solid var(--lime); outline-offset: 2px; }
   
   .exchange .block:focus-within { border-color: #3a3d3f; }
   
-  .exchange .method input:focus-visible + .method-body { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .exchange .method input:focus-visible + .method-body { outline: 2px solid var(--lime); outline-offset: 2px; }
   
   @media (max-width: 420px) {
     .exchange { padding: 14px 10px; }
     .exchange .methods { grid-template-columns: 1fr; }
     .exchange .big { font-size: 18px; }
+    .exchange .amount { font-size: 34px; }
+    .exchange .summary .result { font-size: 26px; }
   }
   
   @media (prefers-reduced-motion: reduce) {

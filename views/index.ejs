@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ВЕКТОР — криптообмінник</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/css/tokens.css">
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/content.css">
     <link rel="stylesheet" href="/css/exchange.css">
     <link rel="stylesheet" href="/css/order.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -33,6 +34,48 @@
                         <span class="check-icon green-text"><i class="bi bi-check-lg"></i></span> P2P як альтернатива
                     </li>
                 </ul>
+
+                <%
+                    // Українські форми множини: 1 відділення, 2 слоти, 5 слотів
+                    const plural = (n, one, few, many) => {
+                        const m10 = n % 10, m100 = n % 100;
+                        if (m10 === 1 && m100 !== 11) return one;
+                        if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return few;
+                        return many;
+                    };
+                %>
+                <dl class="stats">
+                    <div>
+                        <dt><%= branches.length %></dt>
+                        <dd><%= plural(branches.length, 'відділення', 'відділення', 'відділень') %></dd>
+                    </div>
+                    <div>
+                        <dt><%= slots.length %></dt>
+                        <dd><%= plural(slots.length, 'слот', 'слоти', 'слотів') %> щодня</dd>
+                    </div>
+                    <div>
+                        <dt><%= cryptos.length %></dt>
+                        <dd><%= plural(cryptos.length, 'криптовалюта', 'криптовалюти', 'криптовалют') %></dd>
+                    </div>
+                </dl>
+
+                <ol class="how" id="how-it-works">
+                    <li class="step">
+                        <span class="step__num">1</span>
+                        <strong>Заявка</strong>
+                        <span>Сума, крипта, відділення й час</span>
+                    </li>
+                    <li class="step">
+                        <span class="step__num">2</span>
+                        <strong>Підтвердження</strong>
+                        <span>Перевіряємо готівку й курс</span>
+                    </li>
+                    <li class="step">
+                        <span class="step__num">3</span>
+                        <strong>Готівка</strong>
+                        <span>Забираєш у відділенні</span>
+                    </li>
+                </ol>
             </section>
             <section class="table">
                 <%- include('partials/exchange-form') %>
@@ -42,7 +85,10 @@
 
     <%- include('partials/footer') %>
 
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
     <script src="/js/exchange.js"></script>
+    <script src="/js/animations.js"></script>
     <script src="/js/main.js"></script>
 </body>
 </html>
