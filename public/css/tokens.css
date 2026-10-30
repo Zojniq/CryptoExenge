@@ -1,0 +1,26 @@
+/* Токени з макету «ВЕКТОР — пропозиції по дизайну» */
+:root {
+    --bg: #0F0F0F;
+    --card: #151515;
+    --field: #101010;
+    --line: #2A2A2A;
+    --lime: #DDF56B;
+    --lime-soft: #232D17;
+    --text: #FFFFFF;
+    --muted: #B4B4B4;
+    --hint: #9A9A9A;
+
+    --font: 'Manrope', sans-serif;
+    --radius: 12px;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    line-height: 1.5;
+}
+
+.green-text {
+    color: var(--lime);
+}

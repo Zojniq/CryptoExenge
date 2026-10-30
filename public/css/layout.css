@@ -68,14 +68,31 @@
 
 .btn {
     text-decoration: none;
-    color: #FFFFFFFF;
-    font-weight: 550;
+    color: var(--text);
+    font-weight: 600;
     font-size: 13px;
-    border: #FFFFFFFF 1px solid;
+    border: 1px solid var(--text);
     padding: 10px 20px;
     border-radius: 10px;
 }
 
 .btn:hover {
     opacity: 0.8;
+}
+
+@media (max-width: 760px) {
+    .main-nav {
+        display: none;
+    }
+
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 420px) {
+    .footer-inner {
+        grid-template-columns: 1fr;
+    }
 }
