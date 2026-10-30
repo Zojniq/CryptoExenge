@@ -114,11 +114,89 @@
     background-color: var(--card);
 }
 
-.order-details h2 {
+.order-details h2,
+.next-steps h2 {
     font-size: 22px;
     font-weight: 700;
-    margin-bottom: 6px;
     color: var(--text);
+}
+
+.order-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.status {
+    flex: none;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+}
+
+.status--pending {
+    color: #F5C46B;
+    border-color: rgba(245, 196, 107, 0.4);
+}
+
+.status--confirmed,
+.status--completed {
+    color: var(--lime);
+    border-color: rgba(221, 245, 107, 0.4);
+}
+
+.next-steps {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 24px;
+    padding: 18px 20px 20px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background-color: var(--card);
+}
+
+.next-steps ol {
+    list-style: none;
+    counter-reset: step;
+    display: grid;
+    gap: 14px;
+    margin-top: 14px;
+}
+
+.next-steps li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    column-gap: 12px;
+}
+
+.next-steps li::before {
+    content: counter(step);
+    grid-row: span 2;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--lime);
+    border: 1px solid rgba(221, 245, 107, 0.4);
+    border-radius: 50%;
+}
+
+.next-steps strong {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.next-steps span {
+    font-size: 13px;
+    color: var(--hint);
 }
 
 .orderInfo{
@@ -148,6 +226,64 @@
 .orderInfo-value.green-text {
     color: var(--lime);
     letter-spacing: 0.04em;
+}
+
+.orderInfo--code {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.orderCode {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.orderCode .orderInfo-value {
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    padding: 6px 12px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: border-color .2s, color .2s;
+}
+
+.copy-btn:hover {
+    border-color: var(--hint);
+}
+
+.copy-btn.is-done {
+    color: var(--lime);
+    border-color: var(--lime);
+}
+
+.orderQr {
+    flex: none;
+    width: 104px;
+    height: 104px;
+    padding: 8px;
+    background: #FFFFFF;
+    border-radius: 10px;
+}
+
+.orderQr svg {
+    display: block;
 }
 
 .orderInfo-muted {

@@ -38,14 +38,32 @@
             </div>
 
             <div class="order-details">
-                <h2>Деталі замовлення</h2>
-                <div class="orderInfo">
-                    <span class="orderInfo-label">Номер замовлення</span>
-                    <span class="orderInfo-value green-text">#<%= order.public_code %></span>
+                <% const statuses = {
+                    pending: 'Очікує підтвердження',
+                    confirmed: 'Підтверджено',
+                    completed: 'Виконано',
+                    cancelled: 'Скасовано'
+                } %>
+                <div class="order-head">
+                    <h2>Деталі замовлення</h2>
+                    <span class="status status--<%= order.status %>"><%= statuses[order.status] %></span>
+                </div>
+                <div class="orderInfo orderInfo--code">
+                    <div class="orderCode">
+                        <span class="orderInfo-label">Номер замовлення</span>
+                        <span class="orderInfo-value green-text">#<%= order.public_code %></span>
+                        <button class="copy-btn" type="button" data-copy="<%= order.public_code %>">
+                            <i class="bi bi-copy" aria-hidden="true"></i>
+                            <span class="copy-btn__text">Скопіювати</span>
+                        </button>
+                    </div>
+                    <div class="orderQr" role="img" aria-label="QR-код замовлення">
+                        <%- qrSvg %>
+                    </div>
                 </div>
                 <div class="orderInfo">
                     <span class="orderInfo-label">Сума готівки</span>
-                    <span class="orderInfo-value"><%= Number(order.fiat_amount).toLocaleString('uk-UA') %> <%= order.fiat_currency %></span>
+                    <span class="orderInfo-value"><%= Number(order.fiat_amount).toLocaleString('uk-UA') %> <%= order.fiat_currency %> <span class="orderInfo-muted">· 1 <%= order.crypto_code %> = <%= Number(order.rate).toLocaleString('uk-UA', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %> <%= order.fiat_currency %></span></span>
                 </div>
                 <div class="orderInfo">
                     <span class="orderInfo-label">Крипта для оплати</span>
@@ -58,6 +76,24 @@
                 <p class="order-note">Остаточний курс і наявність готівки підтвердимо перед зустріччю.</p>
             </div>
 
+            <div class="next-steps">
+                <h2>Що далі</h2>
+                <ol>
+                    <li>
+                        <strong>Ми підтвердимо заявку</strong>
+                        <span>Перевіримо наявність готівки й остаточний курс.</span>
+                    </li>
+                    <li>
+                        <strong>Приходь у відділення</strong>
+                        <span><%= order.branch_name %> · <%= order.visit_date.toLocaleDateString('uk-UA') %>, <%= order.start_time.slice(0, 5) %>–<%= order.end_time.slice(0, 5) %></span>
+                    </li>
+                    <li>
+                        <strong>Покажи номер або QR-код</strong>
+                        <span>Працівник знайде заявку, і ти отримаєш готівку.</span>
+                    </li>
+                </ol>
+            </div>
+
             <div class="order-actions">
                 <a class="btn" href="/">На головну</a>
             </div>
@@ -65,5 +101,7 @@
     </main>
 
     <%- include('partials/footer') %>
+
+    <script src="/js/order.js"></script>
 </body>
 </html>

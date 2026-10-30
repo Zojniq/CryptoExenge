@@ -1,4 +1,5 @@
 import express from 'express';
+import QRCode from 'qrcode';
 import { createOrder, getOrderByCode } from './db/orders.js';
 import { getBranches, getCryptos, getSlots } from './db/catalog.js';
 import { getRates } from './services/rates.js';
@@ -123,7 +124,9 @@ app.get('/orders/:code', async (req, res) => {
       message: "Перевір номер замовлення або створи нову заявку."
     });
   } else {
-    res.render('order', { order });
+    const orderUrl = `${req.protocol}://${req.get('host')}/orders/${order.public_code}`;
+    const qrSvg = await QRCode.toString(orderUrl, { type: 'svg', margin: 0 });
+    res.render('order', { order, qrSvg });
   }
 });
 
